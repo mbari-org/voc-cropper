@@ -1,8 +1,14 @@
-# ImageCropper
+[MBARI](https://www.mbari.org/wp-content/uploads/2014/11/logo-mbari-3b.png)
+<p align="right">
+ <b> <a href="https://github.com/semantic-release/semantic-release"> <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" title="semantic-release"/> </a> </b> <br>
+    <b> <img src="https://img.shields.io/badge/Supported%20Platforms-Windows%20%7C%20macOS%20%7C%20Linux-green" title="Supported Platforms"/> </b> <br>
+    <b> <img src="https://img.shields.io/badge/license-GPL-blue" title="license-GPL"/> </b> <br>
+</p>
 
-# README #
-  
-Simple utility to crop from PNG or JPEG images bounding box annotations in PASCAL formatted annotations.  
+# About
+
+* deepsea-imagecropper * is a simpl utility to crop from PNG or JPEG images bounding box annotations in PASCAL formatted annotations.
+This is useful to extract images for classification testing.
     
 ![ Image link ](/img/flow.jpg)
 
@@ -18,12 +24,12 @@ Simple utility to crop from PNG or JPEG images bounding box annotations in PASCA
 ## Build
 
 ```bash
-docker build -t mbari/avedac-imagecropper .
+docker build -t mbari/deepsea-imagecropper .
 ```
 ## *Run example*
 
 ```bash
-docker run -it --rm -v $PWD/data:/data mbari/avedac-imagecropper -d /data/annotations --image_dir /data/imgs  -o /data/out
+docker run -it --rm -v $PWD/data:/data mbari/deepsea-imagecropper -d /data/annotations --image_dir /data/imgs  -o /data/out
 ```
 
 Should see output
