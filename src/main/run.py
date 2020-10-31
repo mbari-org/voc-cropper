@@ -195,6 +195,7 @@ def main(_):
 
     print('Found {} files'.format(len(annotations)))
     means = []
+    stds = []
     labels = {}
     filter_labels = None
     if args.labels:
@@ -221,15 +222,19 @@ def main(_):
                 labels[key] += value
 
                 img_path = os.path.join(args.image_dir, data['filename'])
-                means.append(np.mean(cv2.imread(img_path), axis=(0, 1)))
+                img = cv2.imread(img_path)
+                means.append(np.mean(img, axis=(0, 1)))
+                stds.append(np.mean(img, axis=(0, 1)))
         except Exception as ex:
             print(ex)
             continue
 
     mean = 0
-    if len(means) > 0:
+    std = 0
+    if len(means) > 0 and len(stds) > 0:
         mean = np.mean(means, axis=(0))
-    print('Done. Found {} examples.\nImage mean {} normalized {}'.format(sum(labels.values()), mean, mean / 255))
+        std = np.mean(stds, axis=(0))
+    print('Done. Found {} examples.\nImage mean {} normalized {} std {} normalized {}'.format(sum(labels.values()), mean, mean / 255, std, std / 255))
     for key, value in labels.items():
         print('Total {} = {}'.format(key, value))
 

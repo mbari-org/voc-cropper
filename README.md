@@ -6,13 +6,16 @@
 
 # About
 
-* deepsea-imagecropper * is a simpl utility to crop from PNG or JPEG images bounding box annotations in PASCAL formatted annotations.
-This is useful to extract images for classification testing.
+* deepsea-imagecropper * is a simple utility to crop from PNG or JPEG images bounding box annotations in PASCAL formatted annotations.
+This is used to crop images for classification testing.
     
 ![ Image link ](/img/flow.jpg)
 
 ## *Arguments* 
 
+  * run as you -u $(id -u):$(id -g)
+  * remove after running --rm
+  * run interactively -it
   * -d root directory to the raw data
   * -o path to output image crops to
   * --minsize minimum size pixel width or height dimension - useful to remove images too small for classification
@@ -28,7 +31,12 @@ docker build -t mbari/deepsea-imagecropper .
 ## *Run example*
 
 ```bash
-docker run -it --rm -v $PWD/data:/data mbari/deepsea-imagecropper -d /data/annotations --image_dir /data/imgs  -o /data/out
+docker run -it \
+--rm -u $(id -u):$(id -g) \
+-v $PWD/data:/data mbari/deepsea-imagecropper \
+-d /data/annotations \
+--image_dir /data/imgs \
+-o /data/out
 ```
 
 Should see output
