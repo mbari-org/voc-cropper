@@ -20,7 +20,7 @@ This is used to crop images for classification testing.
   * -o path to output image crops to
   * --minsize minimum size pixel width or height dimension - useful to remove images too small for classification
   * (optional) --labels list of space separated labels to load - defaults to everything. 
-  * (optional) --image_path path where raw images associated with the annotations are located - overrides those defined
+  * (optional) --image_dir path where raw images associated with the annotations are located - overrides those defined
   in the PASCAL formatted annotations
 
 ## Build
