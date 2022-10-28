@@ -23,12 +23,11 @@ import logging
 import sys
 import cv2
 
-sys.path.append(os.path.join(os.path.dirname(__file__), 'tensorflow_models/research'))
 
 from lxml import etree
 import tensorflow as tf
 from PIL import Image
-from object_detection.utils import dataset_util
+from tensorflow_models.research.object_detection.utils import dataset_util
 
 
 def process_command_line():

@@ -1,0 +1,13 @@
+name: voc-imagecropper
+channels:
+  - conda-forge
+  - anaconda
+  - pytorch
+dependencies:
+  - python>=3.8
+  - jupyter
+  - ipykernel
+  - sagemaker
+  - pip
+  - pip:
+    - -r requirements.txt

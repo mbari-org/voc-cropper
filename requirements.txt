@@ -1,0 +1,7 @@
+opencv-python
+scipy
+numpy
+lxml
+pillow
+tensorflow
+nose

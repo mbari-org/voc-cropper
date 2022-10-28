@@ -1,0 +1,56 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: docker build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code and all tags and branches
+        uses: actions/checkout@v2
+        id: version
+        with:
+          fetch-depth: 0
+
+      - name: Get docker tag
+        run: |
+          tag_v=$(git describe --tags $(git rev-list --tags --max-count=1))
+          tag=$(echo $tag_v | sed 's/v//')
+          if [[ $tag =~ ^v[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+            tag="latest"
+          fi
+          echo "Setting TAG=${tag}"
+          echo "TAG=${tag}" >> $GITHUB_ENV
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v3
+        continue-on-error: true
+        with:
+          context: .
+          push: true
+          tags: |
+            mbari/voc-imagecropper:${{ env.TAG }}
+            mbari/voc-imagecropper:latest
+          labels: |
+            IMAGE_URI=mbari/voc-imagecropper
+            
+      - name: Build and push arm64 image
+        uses: docker/build-push-action@v3
+        continue-on-error: true
+        with:
+          context: .
+          push: true
+          tags: |
+            mbari/voc-imagecropper:${{ env.TAG }}
+            mbari/voc-imagecropper:latest
+          labels: |
+            IMAGE_URI=mbari/voc-imagecropper
+          platforms: linux/arm64
