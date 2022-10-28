@@ -27,7 +27,7 @@ import cv2
 from lxml import etree
 import tensorflow as tf
 from PIL import Image
-from tensorflow_models.research.object_detection.utils import dataset_util
+import dataset_util
 
 
 def process_command_line():

@@ -5,3 +5,4 @@ lxml
 pillow
 tensorflow
 nose
+tf-models-official

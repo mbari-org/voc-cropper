@@ -26,14 +26,14 @@ This is used to crop images for classification testing.
 ## Build
 
 ```bash
-docker build -t mbari/deepsea-imagecropper .
+docker build -t mbari/voc-imagecropper .
 ```
 ## *Run example*
 
 ```bash
 docker run -it \
 --rm -u $(id -u):$(id -g) \
--v $PWD/data:/data mbari/deepsea-imagecropper \
+-v $PWD/data:/data mbari/voc-imagecropper \
 -d /data/annotations \
 --image_dir /data/imgs \
 -o /data/out
