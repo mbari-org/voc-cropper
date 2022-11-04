@@ -153,10 +153,10 @@ def dict_to_images(output_dir,
             print('Creating directory {}'.format(class_dir))
             os.mkdir(class_dir)
 
-        xmin = int(obj['bndbox']['xmin'])
-        ymin = int(obj['bndbox']['ymin'])
-        xmax = int(obj['bndbox']['xmax'])
-        ymax = int(obj['bndbox']['ymax'])
+        xmin = int(float(obj['bndbox']['xmin']))
+        ymin = int(float(obj['bndbox']['ymin']))
+        xmax = int(float(obj['bndbox']['xmax']))
+        ymax = int(float(obj['bndbox']['ymax']))
 
         left = int(xmin*wf)
         right = int(xmax*wf)
