@@ -27,8 +27,8 @@ import cv2
 from lxml import etree
 import tensorflow as tf
 from PIL import Image
-import dataset_util
 
+from object_detection.utils import dataset_util
 
 def process_command_line():
     '''
@@ -127,7 +127,7 @@ def dict_to_images(output_dir,
         wf = 1.0
         hf = 1.0
 
-    with tf.gfile.GFile(img_path, 'rb') as fid:
+    with open(img_path, 'rb') as fid:
         encoded_img = fid.read()
     encoded_img_io = io.BytesIO(encoded_img)
     rgb_image = Image.open(encoded_img_io)
@@ -178,7 +178,7 @@ def dict_to_images(output_dir,
     return my_label
 
 
-def main(_):
+def main():
     args = process_command_line()
 
     output_dir = args.output_path
@@ -239,4 +239,4 @@ def main(_):
 
 
 if __name__ == '__main__':
-    tf.app.run()
+    main()

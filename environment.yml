@@ -8,6 +8,7 @@ dependencies:
   - jupyter
   - ipykernel
   - sagemaker
+  - tensorflow
   - pip
   - pip:
     - -r requirements.txt

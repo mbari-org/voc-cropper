@@ -1,15 +1,15 @@
-FROM python:3.10-slim as builder
+FROM python:3.7-slim as builder
 
 RUN apt-get -y update && \
-    apt-get install -y python3 && \
-    apt-get install -y python3-pip && \
     apt-get install -y git && \
     apt-get install wget
 
 ENV APP_HOME /app
 WORKDIR ${APP_HOME}
 ADD requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
+RUN git clone https://github.com/tensorflow/models.git tensorflow_models
+ENV PYTHONPATH=${APP_HOME}:${APP_HOME}/tensorflow_models/research:${APP_HOME}/tensorflow_models/research/slim:${APP_HOME}/tensorflow_models/research/object_detection
 ADD src/main .
 
 WORKDIR /app
