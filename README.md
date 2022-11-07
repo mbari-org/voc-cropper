@@ -16,6 +16,7 @@ This is used to crop images for classification testing.
   * run as you -u $(id -u):$(id -g)
   * remove after running --rm
   * run interactively -it
+  * --resize <widthxheight> resize the image to the specified size
   * -d root directory to the raw data
   * -o path to output image crops to
   * --minsize minimum size pixel width or height dimension - useful to remove images too small for classification
