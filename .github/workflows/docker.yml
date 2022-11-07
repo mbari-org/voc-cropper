@@ -37,4 +37,4 @@ jobs:
             mbari/voc-imagecropper:latest
           labels: |
             IMAGE_URI=mbari/voc-imagecropper
-          platforms: linux/arm64
+          platforms: linux/arm64/v8
