@@ -6,10 +6,10 @@
 
 # About
 
-* deepsea-imagecropper * is a simple utility to crop from PNG or JPEG images bounding box annotations in PASCAL formatted annotations.
+* voc-imagecropper * is a simple utility to crop from PNG or JPEG images bounding box annotations in PASCAL formatted annotations.
 This is used to crop images for classification testing.
     
-![ Image link ](/img/flow.jpg)
+![ Image link ](img/flow.jpg)
 
 ## *Arguments* 
 
