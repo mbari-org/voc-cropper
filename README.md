@@ -6,8 +6,8 @@
 
 # About
 
-* voc-imagecropper * is a simple utility to crop from PNG or JPEG images bounding box annotations in PASCAL formatted annotations.
-This is used to crop images for classification testing.
+*voc-imagecropper* is a simple utility to crop from PNG or JPEG images bounding box annotations in PASCAL VOC formatted annotations.
+This is used to crop (and optionally resize) images from full frames for classification testing.
     
 ![ Image link ](img/flow.jpg)
 
@@ -16,7 +16,7 @@ This is used to crop images for classification testing.
   * run as you -u $(id -u):$(id -g)
   * remove after running --rm
   * run interactively -it
-  * --resize <widthxheight> resize the image to the specified size
+  * --resize the cropped image to the specified size, e.g. --resize 128x128 crop then resizes to 128x128
   * -d root directory to the raw data
   * -o path to output image crops to
   * --minsize minimum size pixel width or height dimension - useful to remove images too small for classification
@@ -25,6 +25,8 @@ This is used to crop images for classification testing.
   in the PASCAL formatted annotations
 
 ## Build
+
+You can skip this step if you are using the pre-built docker image.
 
 ```bash
 docker build -t mbari/voc-imagecropper .
