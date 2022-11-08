@@ -27,7 +27,7 @@ jobs:
           labels: |
             IMAGE_URI=mbari/voc-imagecropper
             
-      - name: Build and push arm64 image
+      - name: Build and push arm64 abd amd64 images to Docker Hub
         uses: docker/build-push-action@v3
         continue-on-error: true
         with:
@@ -37,4 +37,4 @@ jobs:
             mbari/voc-imagecropper:latest
           labels: |
             IMAGE_URI=mbari/voc-imagecropper
-          platforms: linux/arm64/v8
+          platforms: linux/arm/v8,linux/amd64,linux/arm64
