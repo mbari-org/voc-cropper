@@ -23,12 +23,9 @@ import logging
 import sys
 import cv2
 
-
-from lxml import etree
-import tensorflow as tf
+import xmltodict
 from PIL import Image
 
-from object_detection.utils import dataset_util
 
 def process_command_line():
     '''
@@ -74,8 +71,7 @@ def is_valid_xml(xml_filename):
     try:
         with open(xml_filename, 'rb') as fid:
             xml_str = fid.read()
-        xml = etree.fromstring(xml_str)
-        dataset_util.recursive_parse_xml_to_dict(xml)['annotation']
+        xmltodict.parse(xml_str)
         return True
     except Exception as ex:
         return False
@@ -136,7 +132,10 @@ def dict_to_images(output_dir,
 
     img = cv2.imread(img_path)
     my_label = {}
-    for obj in data['object']:
+    object_ = data['object']
+    # object_ will be a list when multiple <object> entries present, otherwise a dict:
+    objs = object_ if type(object_) is list else [object_]
+    for obj in objs:
         name = obj['name']
         if labels and (name not in labels or obj['name'] not in labels):
             print('{0} not in {1} so excluding from record'.format(name, labels))
@@ -205,8 +204,8 @@ def main():
             logging.info('Processing image %d of %d', idx, len(annotations))
         with open(example, 'rb') as fid:
             xml_str = fid.read()
-        xml = etree.fromstring(xml_str)
-        data = dataset_util.recursive_parse_xml_to_dict(xml)['annotation']
+        xml = xmltodict.parse(xml_str)
+        data = xml['annotation']
         try:
             if args.resize:
                 width = int(args.resize.split('x')[0])

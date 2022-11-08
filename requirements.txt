@@ -1,8 +1,6 @@
 opencv-python-headless==4.5.2.54
 scipy
 numpy
-lxml
+xmltodict
 pillow
 nose
-tensorflow
-tensorflow-io
