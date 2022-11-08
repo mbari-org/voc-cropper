@@ -13,15 +13,15 @@ This is used to crop (and optionally resize) images from full frames for classif
 
 ## *Arguments* 
 
-  * run as you -u $(id -u):$(id -g)
-  * remove after running --rm
-  * run interactively -it
-  * --resize the cropped image to the specified size, e.g. --resize 128x128 crop then resizes to 128x128
-  * -d root directory to the raw data
-  * -o path to output image crops to
-  * --minsize minimum size pixel width or height dimension - useful to remove images too small for classification
-  * (optional) --labels list of space separated labels to load - defaults to everything. 
-  * (optional) --image_dir path where raw images associated with the annotations are located - overrides those defined
+  * run as you:  `-u $(id -u):$(id -g)`
+  * remove after running: `--rm`
+  * run interactively: `-it`
+  * `--resize` the cropped image to the specified size, e.g. `--resize 128x128` crop then resizes to 128x128
+  * `-d` root directory to the raw data
+  * `-o` path to output image crops to
+  * `--minsize minimum` size pixel width or height dimension - useful to remove images too small for classification
+  * (optional) `--labels` list of space separated labels to load - defaults to everything. 
+  * (optional) `--image_dir` path where raw images associated with the annotations are located - overrides those defined
   in the PASCAL formatted annotations
 
 ## Build
