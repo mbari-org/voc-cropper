@@ -1,5 +1,4 @@
 opencv-python-headless==4.5.2.54
-scipy
 numpy
 xmltodict
 pillow
