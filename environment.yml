@@ -6,9 +6,6 @@ channels:
 dependencies:
   - python>=3.8
   - jupyter
-  - ipykernel
-  - sagemaker
-  - tensorflow
   - pip
   - pip:
     - -r requirements.txt
