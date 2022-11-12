@@ -8,8 +8,7 @@ ENV APP_HOME /app
 WORKDIR ${APP_HOME}
 ADD requirements.txt .
 RUN pip install -r requirements.txt
-RUN git clone https://github.com/tensorflow/models.git tensorflow_models
-ENV PYTHONPATH=${APP_HOME}:${APP_HOME}/tensorflow_models/research:${APP_HOME}/tensorflow_models/research/slim:${APP_HOME}/tensorflow_models/research/object_detection
+ENV PYTHONPATH=${APP_HOME}
 ADD src/main .
 
 WORKDIR /app
