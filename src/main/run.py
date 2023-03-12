@@ -15,6 +15,8 @@ Crops images from bounding box annotations in PASCAL records
 @license: __license__
 '''
 
+from PIL import JpegImagePlugin
+JpegImagePlugin._getmp = lambda: None
 import io
 import glob
 import os
