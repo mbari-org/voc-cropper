@@ -42,12 +42,18 @@ docker run -it \
 -o /data/out
 ```
 
-Should see output
+Should see output similar to:
 ```bash
-Searching in /data/annotations
-Found /data/annotations/IMG_5137.xml
-Cropping left 2448.0 upper 1389.0 right 2648.0 lower 1589.0
-Done. Found 1 examples.
-Image mean [91.26420774 93.76789747 77.57847996] normalized [0.35789885 0.36771724 0.30422933]
-Total PENIAGONE_VITREA = 1
+2023-07-17 22:06:09,885 INFO Searching in data/annotations for .xml files
+2023-07-17 22:06:09,886 INFO Found 1 files
+2023-07-17 22:06:09,886 INFO Using 1 processes to convert 1 annotations ...
+2023-07-17 22:06:10,341 INFO Calculating mean and std ...
+2023-07-17 22:06:10,341 INFO Computing statistics for data
+Computing statistics for data : 100% (1 of 1) || Elapsed Time: 0:00:00 Time:  0:00:00
+2023-07-17 22:06:10,491 INFO Writing data/stats.txt
+2023-07-17 22:06:10,492 INFO Number of concepts: 1
+2023-07-17 22:06:10,492 INFO Number of frames: 1
+2023-07-17 22:06:10,492 INFO Mean: [0.33466873 0.40399225 0.39004853]
+2023-07-17 22:06:10,492 INFO Std: [0. 0. 0.]
+2023-07-17 22:06:10,492 INFO Writing data/labels.txt
 ```
