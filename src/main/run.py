@@ -279,7 +279,12 @@ def main():
     now = dt.utcnow()
 
     # log to file
-    log_filename = f"{LOGGER_NAME}_{now:%Y%m%d}.log"
+    # Log to the /tmp directory if we don't have write access to the current directory
+    if not os.access(os.getcwd(), os.W_OK):
+        logger.info(f'No write access to {os.getcwd()} so logging to /tmp')
+        log_filename = f"/tmp/{LOGGER_NAME}_{dt.utcnow():%Y%m%d}.log"
+    else:
+        log_filename = f"{LOGGER_NAME}_{dt.utcnow():%Y%m%d}.log"
     handler = logging.FileHandler(log_filename, mode="w")
     handler.setFormatter(formatter)
     handler.setLevel(logging.INFO)

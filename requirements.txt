@@ -3,4 +3,4 @@ numpy
 xmltodict
 pillow
 nose
-progressbar
+progressbar2
