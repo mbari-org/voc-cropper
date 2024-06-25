@@ -9,10 +9,10 @@ WORKDIR ${APP_HOME}
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 ENV PYTHONPATH=${APP_HOME}
-ADD src/main .
+ADD src .
 
 WORKDIR /app
-ENTRYPOINT ["python3", "/app/run.py"]
+ENTRYPOINT ["python3", "/app/imagecropper/run.py"]
 
 # Add test, building on
 FROM builder as testrunner

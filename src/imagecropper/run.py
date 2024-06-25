@@ -49,7 +49,7 @@ def process_command_line():
     :return: args object
     """
 
-    from . import __version__
+    from imagecropper import __version__
     import argparse
     from argparse import RawTextHelpFormatter
 
