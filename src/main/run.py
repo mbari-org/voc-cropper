@@ -49,6 +49,7 @@ def process_command_line():
     :return: args object
     """
 
+    from main import __version__
     import argparse
     from argparse import RawTextHelpFormatter
 
@@ -73,6 +74,7 @@ def process_command_line():
     parser.add_argument('--labels', action='store',
                         help='List of space separated labels to crop. Defaults to everything', nargs='*',
                         required=False)
+    parser.add_argument('--version', action='version', version='%(prog)s ' + __version__)
 
     args = parser.parse_args()
     return args
