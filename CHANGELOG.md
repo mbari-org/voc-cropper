@@ -1,0 +1,71 @@
+# CHANGELOG
+
+## v0.1.0 (2024-06-25)
+
+### Build
+
+* build: added version to command ([`682c6ba`](https://github.com/mbari-org/voc-cropper/commit/682c6ba7828bc91be3968f088c882e8d78a158fc))
+
+* build: added QEMU to to build a multi-platform image ([`e1adaf2`](https://github.com/mbari-org/voc-cropper/commit/e1adaf23d004fb80a2dc46438dcef22cf00bc81e))
+
+* build: removed unused dependencies from conda build for dev and upgraded open cv library ([`a5235cc`](https://github.com/mbari-org/voc-cropper/commit/a5235ccc2a264d13630c0d1a2629b0360c1414f2))
+
+* build: added linux/amd64,linux/arm64 to the list of Docker images ([`d3c5de5`](https://github.com/mbari-org/voc-cropper/commit/d3c5de5b730787491e5d6fd4a85f5ef71de58763))
+
+* build: switch platforms to M1 ([`81368cb`](https://github.com/mbari-org/voc-cropper/commit/81368cb51844c105fc6bf054e1884d859943e684))
+
+* build: simplified release to latest tag sans release tags ([`2b381b3`](https://github.com/mbari-org/voc-cropper/commit/2b381b33f09ecbc970d0d2175d7ae4c08611803a))
+
+* build: switch to tf-models-official ([`37e641b`](https://github.com/mbari-org/voc-cropper/commit/37e641b7685cc16007eb6bae670b1c4e2d3e1c05))
+
+### Documentation
+
+* docs: added resizing information ([`f95bb18`](https://github.com/mbari-org/voc-cropper/commit/f95bb18d5318add768a7559fd1213247b29cd3fa))
+
+* docs: added missing resize option ([`4d6bfd6`](https://github.com/mbari-org/voc-cropper/commit/4d6bfd6b2383bb11435d35b945dc97987eeaf0b5))
+
+* docs: updated docs ([`97bacd9`](https://github.com/mbari-org/voc-cropper/commit/97bacd924b84ec8e59d3ac2c98e791723c0b614c))
+
+* docs: correct argument name ([`1e19c60`](https://github.com/mbari-org/voc-cropper/commit/1e19c6054b7c6996522bfce853ef03e8c9329fde))
+
+* docs(readme.md): removed html and added MBARI link ([`f2e9c90`](https://github.com/mbari-org/voc-cropper/commit/f2e9c90120a19d59e4fb1543e8196d6b15829d51))
+
+* docs: changes to reflect new repo name
+
+updated flow image and associated doc to reflect new repo/docker image name ([`08fded7`](https://github.com/mbari-org/voc-cropper/commit/08fded7d63731c75c41643e77089f561a0d5bb32))
+
+* docs: reformatted image to remove black space ([`4600764`](https://github.com/mbari-org/voc-cropper/commit/46007640dc4298d3c3a8b81ba044cfa65878a92f))
+
+### Feature
+
+* feat: added better square cropping algorithm ([`ef42a69`](https://github.com/mbari-org/voc-cropper/commit/ef42a699c73631bbc0f412963d828662063c4106))
+
+* feat: merged multiproc, added logging, and removed unused features ([`3c80c21`](https://github.com/mbari-org/voc-cropper/commit/3c80c21581db170b56654541584565f291c4a55d))
+
+* feat: slimmed docker image and replaced docker id with user id ([`d5466d6`](https://github.com/mbari-org/voc-cropper/commit/d5466d6c51220d233d53a0563f846ce309b18047))
+
+* feat: initial check-in ([`ea22ee2`](https://github.com/mbari-org/voc-cropper/commit/ea22ee28837b28d040509020127c8e217035d910))
+
+### Fix
+
+* fix: write log to writable dir and add progressbar2 ([`6349145`](https://github.com/mbari-org/voc-cropper/commit/63491459c20046bcf4551dcc6307f1c9d945f726))
+
+* fix: added missing progressbar dependency ([`0c77cf1`](https://github.com/mbari-org/voc-cropper/commit/0c77cf1c72c54ec557ffc11188966a3cf2449b5b))
+
+* fix: hack to support drone image JPG encoding ([`6878e7c`](https://github.com/mbari-org/voc-cropper/commit/6878e7ce12f00089b3084743c96183c1fb1eab75))
+
+* fix: invalid literal for int with base 10 error ([`3b8e386`](https://github.com/mbari-org/voc-cropper/commit/3b8e3869e8079e410f02b7dbd3255be760dfcdd5))
+
+* fix: updated tensorflow build ([`4a9c718`](https://github.com/mbari-org/voc-cropper/commit/4a9c7180e063d6975c33a2a3b082b18cd83e4ba1))
+
+### Performance
+
+* perf: remove unneeded scipy dependency ([`f97ad33`](https://github.com/mbari-org/voc-cropper/commit/f97ad3377281cfa1d284168654cd0bf99f7e7d13))
+
+* perf: use xmltodict to reduce size of image/dependencies ([`c132988`](https://github.com/mbari-org/voc-cropper/commit/c132988ace2bbfb30fbb34c980785c669e63e4b9))
+
+* perf: bumped to newer python and add docker release ([`1915e36`](https://github.com/mbari-org/voc-cropper/commit/1915e36884bc66f835c77eb8caff056a664dd3c1))
+
+### Unknown
+
+* minor markdown related edits ([`c5a0fa2`](https://github.com/mbari-org/voc-cropper/commit/c5a0fa2c5afe5786b01bb56ccbeb34ba137fc9bc))
