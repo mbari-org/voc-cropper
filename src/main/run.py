@@ -158,6 +158,85 @@ def gen_statistics(data_dir: str, stats_file: str, labels_file: str):
             f.write("%s\n" % key)
 
 
+def crop_square_image(image_width:int, image_height:int, square_dim: int, x: float, y: float, xx: float, xy: float,
+                      image_path: str, crop_path: str):
+    """
+    Crop the image to a square padding the shortest dimension, then resize it to square_dim x square_dim
+    This also adjusts the crop to make sure the crop is fully in the frame, otherwise the crop that
+    exceeds the frame is filled with black bars - these produce clusters of "edge" objects instead
+    of the detection
+    :param crop_path:  path to store the cropped image
+    :param image_path:  path to the image to crop
+    :param xy:  y coordinate of the bottom right corner of the crop
+    :param xx:  x coordinate of the bottom right corner of the crop
+    :param y:  y coordinate of the top left corner of the crop
+    :param x:  x coordinate of the top left corner of the crop
+    :param image_width:  width of the image to crop from
+    :param image_height:  height of the image to crop from
+    :param square_dim: dimension of the square image
+    :return:
+    """
+    try:
+
+        x1 = x#int(image_width * x)
+        y1 = y#int(image_height * y)
+        x2 = xx#int(image_width * xx)
+        y2 = xy#int(image_height * xy)
+        width = x2 - x1
+        height = y2 - y1
+        shorter_side = min(height, width)
+        longer_side = max(height, width)
+        delta = abs(longer_side - shorter_side)
+
+        # Divide the difference by 2 to determine how much padding is needed on each side
+        padding = delta // 2
+
+        # Add the padding to the shorter side of the image
+        if width == shorter_side:
+            x1 -= padding
+            x2 += padding
+        else:
+            y1 -= padding
+            y2 += padding
+
+        # Make sure that the coordinates don't go outside the image
+        # If they do, adjust by the overflow amount
+        if y1 < 0:
+            y1 = 0
+            y2 += abs(y1)
+            if y2 > image_height:
+                y2 = image_height
+        elif y2 > image_height:
+            y2 = image_height
+            y1 -= abs(y2 - image_height)
+            if y1 < 0:
+                y1 = 0
+        if x1 < 0:
+            x1 = 0
+            x2 += abs(x1)
+            if x2 > image_width:
+                x2 = image_width
+        elif x2 > image_width:
+            x2 = image_width
+            x1 -= abs(x2 - image_width)
+            if x1 < 0:
+                x1 = 0
+
+        # Crop the image
+        img = Image.open(image_path)
+        img = img.crop((x1, y1, x2, y2))
+
+        # Resize the image to square_dim x square_dim
+        img = img.resize((square_dim, square_dim), Image.LANCZOS)
+
+        # Save the image
+        img.save(crop_path)
+        img.close()
+    except Exception as e:
+        logging.error(f'Error cropping {crop_path} {e}')
+        return
+
+
 def dict_to_images(xml_file: str,
                    output_dir,
                    labels,
@@ -234,37 +313,24 @@ def dict_to_images(xml_file: str,
             upper = int(ymin)
             lower = int(ymax)
 
-            # if the resize is a square, then we need to pad the image to make it square
-            resize_width, resize_height = resize if resize else (0, 0)
-            if resize and resize_width == resize_height:
-                # Use padding if resizing to a square
-                width = left - right
-                height = upper - lower
-                shorter_side = min(height, width)
-                longer_side = max(height, width)
-                delta = abs(longer_side - shorter_side)
-
-                # Divide the difference by 2 to determine how much padding is needed on each side
-                padding = delta // 2
-
-                # Add the padding to the shorter side of the image
-                if width == shorter_side:
-                    left -= padding
-                    right += padding
-                else:
-                    upper -= padding
-                    lower += padding
+            dst_file = '{}/{}/{}_{}.jpg'.format(output_dir, name, root, i)
 
             # only keep crops larger than minsize pixels in at least one dimension
-            if abs(left - right) > minsize or abs(upper - lower) > minsize:
+            if abs(left - right) < minsize or abs(upper - lower) < minsize:
+                logger.info('Too small to convert width {} height {}'.format(abs(left - right), abs(upper - lower)))
+                continue
+
+            # if the resize is a square, then we need to crop the image to a square
+            resize_width, resize_height = resize if resize else (0, 0)
+            if resize and resize_width == resize_height:
+                crop_square_image(img.shape[1], img.shape[0], resize_width, left, upper, right, lower, img_path, dst_file)
+            else:
                 logger.info('Cropping left {} right {} upper {} lower {}'.format(left, right, upper, lower))
                 img2 = img[upper:lower, left:right]
                 if resize:
                     img2 = cv2.resize(img2, dsize=resize, interpolation=cv2.INTER_CUBIC)
                 dst_file = '{}/{}/{}_{}.jpg'.format(output_dir, name, root, i)
                 cv2.imwrite(dst_file, img2, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
-            else:
-                logger.info('Too small to convert width {} height {}'.format(abs(left - right), abs(upper - lower)))
 
     except Exception as ex:
         logging.exception(ex)
