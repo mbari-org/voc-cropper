@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v0.1.1 (2024-06-25)
+
+### Build
+
+* build: add sys path ([`13461fa`](https://github.com/mbari-org/voc-cropper/commit/13461fa6d789538f7d16471da9c68640f0a123f9))
+
+### Fix
+
+* fix: correct source structure ([`9cbc2e2`](https://github.com/mbari-org/voc-cropper/commit/9cbc2e23d70e3d0c218dd8ac51fd0676df133e52))
+
 ## v0.1.0 (2024-06-25)
 
 ### Build
