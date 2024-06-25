@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.2.0 (2024-06-25)
+
+### Feature
+
+* feat: add support for uuid in xml and add machine friendly names as an option ([`295f17b`](https://github.com/mbari-org/voc-cropper/commit/295f17beb70d7b0d4ff480fb647b7cefad9c2a61))
+
 ## v0.1.1 (2024-06-25)
 
 ### Build
