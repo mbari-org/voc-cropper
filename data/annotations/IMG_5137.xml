@@ -9,13 +9,14 @@
     <segmented>0</segmented>
     <object>
         <name>PENIAGONE_VITREA</name>
+        <uuid>2f95f23e-beed-5ca9-835c-92fea83f7af0</uuid>
         <pose>Unspecified</pose>
         <truncated>0</truncated>
         <occluded>0</occluded>
         <difficult>0</difficult>
         <bndbox>
             <xmin>2448</xmin>
-            <ymin>1389</ymin>
+            <ymin>1389</ymin>cond
             <xmax>2648</xmax>
             <ymax>1589</ymax>
         </bndbox>

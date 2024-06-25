@@ -69,6 +69,9 @@ def process_command_line():
     parser.add_argument('--minsize', type=int, required=False, default=0,
                         help="minimum size pixel width or height dimension. "
                              "Useful to remove images too small for classification")
+    parser.add_argument('--machine_friendly', action='store_true',
+                        help='Convert label names to machine friendly names, e.g. sp. A to sp_A, and white spaces to _',
+                        required=False)
     parser.add_argument('--resize', help='Resize images to wxh', required=False, type=str)
     parser.add_argument('-o', '--output_path', action='store', help='Path to store image crops', required=True)
     parser.add_argument('--labels', action='store',
@@ -180,10 +183,10 @@ def crop_square_image(image_width:int, image_height:int, square_dim: int, x: flo
     """
     try:
 
-        x1 = x#int(image_width * x)
-        y1 = y#int(image_height * y)
-        x2 = xx#int(image_width * xx)
-        y2 = xy#int(image_height * xy)
+        x1 = x
+        y1 = y
+        x2 = xx
+        y2 = xy
         width = x2 - x1
         height = y2 - y1
         shorter_side = min(height, width)
@@ -243,6 +246,7 @@ def dict_to_images(xml_file: str,
                    output_dir,
                    labels,
                    minsize,
+                   machine_friendly=False,
                    image_dir=None,
                    resize=None):
     """
@@ -252,6 +256,7 @@ def dict_to_images(xml_file: str,
     :param data: data dictionary
     :param labels: list of labels to include in the crops
     :param minsize: minimum size in pixels for width/height for image crops
+    :param machine_friendly: convert the label to a machine friendly name
     :param image_dir: alternative images directory with raw images
     :param resize: size to rescale crops
     :return: dictionary of total crops per label
@@ -290,14 +295,16 @@ def dict_to_images(xml_file: str,
         # object_ will be a list when multiple <object> entries present, otherwise a dict:
         objs = object_ if type(object_) is list else [object_]
         for i, obj in enumerate(objs):
-            # Convert a machine friendly name, replacing sp. and white spaces with underscores
-            name = obj['name'].replace(' ', '_')
-            name = name.replace('sp.', 'sp_')
-            if labels and (name not in labels or obj['name'] not in labels):
-                logger.warn('{0} not in {1} so excluding from record'.format(name, labels))
-                continue
+            name = obj['name']
+            if machine_friendly:
+                # Convert a machine friendly name, replacing sp. and white spaces with underscores
+                name = name.replace(' ', '_')
+                name = name.replace('sp.', 'sp_')
             if 'SALIENCY' in name:
                 logger.info('skipping {}'.format(name))
+                continue
+            if labels and (name not in labels or obj['name'] not in labels):
+                logger.warn('{0} not in {1} so excluding from record'.format(name, labels))
                 continue
 
             class_dir = '{}/{}'.format(output_dir, name)
@@ -315,7 +322,11 @@ def dict_to_images(xml_file: str,
             upper = int(ymin)
             lower = int(ymax)
 
-            dst_file = '{}/{}/{}_{}.jpg'.format(output_dir, name, root, i)
+            if 'uuid' in obj:
+                id = obj['uuid']
+                dst_file = '{}/{}/{}.jpg'.format(output_dir, name, obj['uuid'])
+            else:
+                dst_file = '{}/{}/{}_{}.jpg'.format(output_dir, name, root, i)
 
             # only keep crops larger than minsize pixels in at least one dimension
             if abs(left - right) < minsize or abs(upper - lower) < minsize:
@@ -397,7 +408,7 @@ def main():
     num_processes = max(1, num_processes)
     logger.info(f'Using {num_processes} processes to convert {len(annotations)} annotations ...')
     with multiprocessing.Pool(num_processes) as pool:
-        args = [(e, output_dir, filter_labels, args.minsize, args.image_dir, resize) for e  in annotations]
+        args = [(e, output_dir, filter_labels, args.minsize, args.machine_friendly, args.image_dir, resize) for e  in annotations]
         pool.starmap(dict_to_images, args)
 
     logger.info(f'Calculating mean and std ...')

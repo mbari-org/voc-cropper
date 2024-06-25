@@ -20,9 +20,15 @@ This is used to crop (and optionally resize) images from full frames for classif
   * `-d` root directory to the raw data
   * `-o` path to output image crops to
   * `--minsize minimum` size pixel width or height dimension - useful to remove images too small for classification
+  * `--machine_friednly` output class names with underscores instead of spaces, or special characters, e.g. dots, e.g. `sp_A` instead of `sp. A`
   * (optional) `--labels` list of space separated labels to load - defaults to everything. 
   * (optional) `--image_dir` path where raw images associated with the annotations are located - overrides those defined
   in the PASCAL formatted annotations
+
+## Note
+
+An exception to the standard PASCAL VOC format is that the `uuid` is used.  If that exists in the annotation, it is used to name the prefix of the output file.  
+If not, the filename is used with an appended integer prefix.  This is to ensure unique filenames for the cropped images.
 
 ## Build
 
