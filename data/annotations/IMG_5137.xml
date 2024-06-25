@@ -9,7 +9,7 @@
     <segmented>0</segmented>
     <object>
         <name>PENIAGONE_VITREA</name>
-        <uuid>2f95f23e-beed-5ca9-835c-92fea83f7af0</uuid>
+        <id>2f95f23e-beed-5ca9-835c-92fea83f7af0</id>
         <pose>Unspecified</pose>
         <truncated>0</truncated>
         <occluded>0</occluded>

@@ -322,9 +322,9 @@ def dict_to_images(xml_file: str,
             upper = int(ymin)
             lower = int(ymax)
 
-            if 'uuid' in obj:
-                id = obj['uuid']
-                dst_file = '{}/{}/{}.jpg'.format(output_dir, name, obj['uuid'])
+            if 'id' in obj:
+                id = obj['id']
+                dst_file = '{}/{}/{}.jpg'.format(output_dir, name, obj['id'])
             else:
                 dst_file = '{}/{}/{}_{}.jpg'.format(output_dir, name, root, i)
 
