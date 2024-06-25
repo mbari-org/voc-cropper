@@ -27,19 +27,19 @@ jobs:
           docker buildx create --name mybuilder --platform linux/arm/v8,linux/amd64,linux/arm64 --use
           docker buildx build --push --platform linux/arm/v8,linux/amd64,linux/arm64 -t mbari/voc-imagecropper:$RELEASE_VERSION --label IMAGE_URI=mbari/voc-imagecropper:$RELEASE_VERSION .
 
-    push_readme_to_dockerhub:
-      runs-on: ubuntu-latest
-      name: Push README to Docker Hub
-      steps:
-        - name: git checkout
-          uses: actions/checkout@v2
-        - name: push README to Dockerhub
-          uses: christian-korneck/update-container-description-action@v1
-          env:
-            DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
-            DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
-          with:
-            destination_container_repo: mbari/voc-imagecropper:latest
-            provider: dockerhub
-            short_description: 'Crop from PNG or JPEG images bounding box annotations in PASCAL VOC formatted annotations.'
-            readme_file: 'README.md'
+  push_readme_to_dockerhub:
+    runs-on: ubuntu-latest
+    name: Push README to Docker Hub
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+      - name: push README to Dockerhub
+        uses: christian-korneck/update-container-description-action@v1
+        env:
+          DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
+        with:
+          destination_container_repo: mbari/voc-imagecropper:latest
+          provider: dockerhub
+          short_description: 'Crop from PNG or JPEG images bounding box annotations in PASCAL VOC formatted annotations.'
+          readme_file: 'README.md'
