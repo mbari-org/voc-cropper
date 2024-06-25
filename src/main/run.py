@@ -25,7 +25,7 @@ import numpy as np
 import logging
 import sys
 import cv2
-
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from pathlib import Path
 import json
 import multiprocessing
@@ -49,7 +49,7 @@ def process_command_line():
     :return: args object
     """
 
-    from main import __version__
+    from . import __version__
     import argparse
     from argparse import RawTextHelpFormatter
 
