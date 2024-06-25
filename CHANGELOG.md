@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.0 (2024-06-25)
+
+### Feature
+
+* feat: switch to id to be more generic ([`24bd8de`](https://github.com/mbari-org/voc-cropper/commit/24bd8dec4c100ed7ec2acc74f4b9155c9073a5fa))
+
 ## v0.2.0 (2024-06-25)
 
 ### Feature
