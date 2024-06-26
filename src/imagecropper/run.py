@@ -323,7 +323,6 @@ def dict_to_images(xml_file: str,
             lower = int(ymax)
 
             if 'id' in obj:
-                id = obj['id']
                 dst_file = '{}/{}/{}.jpg'.format(output_dir, name, obj['id'])
             else:
                 dst_file = '{}/{}/{}_{}.jpg'.format(output_dir, name, root, i)
@@ -342,7 +341,6 @@ def dict_to_images(xml_file: str,
                 img2 = img[upper:lower, left:right]
                 if resize:
                     img2 = cv2.resize(img2, dsize=resize, interpolation=cv2.INTER_CUBIC)
-                dst_file = '{}/{}/{}_{}.jpg'.format(output_dir, name, root, i)
                 cv2.imwrite(dst_file, img2, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
     except Exception as ex:
