@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.5 (2024-06-26)
+
+### Fix
+
+* fix: added version extract from tag ([`097b7db`](https://github.com/mbari-org/voc-cropper/commit/097b7db2c4662f1fc9b9f2cd7ffda76356b3525c))
+
 ## v0.3.4 (2024-06-26)
 
 ### Fix
