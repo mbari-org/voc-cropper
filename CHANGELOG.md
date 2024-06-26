@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.1 (2024-06-26)
+
+### Fix
+
+* fix: do not override the dst_file for resize and revert release change which fails ([`1ffe03f`](https://github.com/mbari-org/voc-cropper/commit/1ffe03f5c71565d41621fb53cb16ac9c15061942))
+
 ## v0.3.0 (2024-06-25)
 
 ### Feature
