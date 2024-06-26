@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.3 (2024-06-26)
+
+### Fix
+
+* fix: correct release boolean? ([`4318d9e`](https://github.com/mbari-org/voc-cropper/commit/4318d9e0795332b30f26a3e140783dd50416908a))
+
 ## v0.3.2 (2024-06-26)
 
 ### Fix
