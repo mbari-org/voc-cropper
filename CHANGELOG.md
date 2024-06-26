@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.4 (2024-06-26)
+
+### Fix
+
+* fix: added prerelease ([`27d1dcb`](https://github.com/mbari-org/voc-cropper/commit/27d1dcb640f3a0a60469c75e2145797558a8f68e))
+
 ## v0.3.3 (2024-06-26)
 
 ### Fix
