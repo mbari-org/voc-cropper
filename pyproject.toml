@@ -3,7 +3,7 @@ line-length = 170
 
 [tool.semantic_release]
 version_variable = [
-"src/main/__init__.py:__version__"
+"src/imagecropper/__init__.py:__version__"
 ]
 major_on_zero = false
 branch = "main"
