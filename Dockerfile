@@ -4,7 +4,7 @@ RUN apt-get -y update && \
     apt-get install -y git && \
     apt-get install wget
 
-ENV APP_HOME /app
+ENV APP_HOME=/app
 WORKDIR ${APP_HOME}
 ADD requirements.txt .
 RUN pip install -r requirements.txt
