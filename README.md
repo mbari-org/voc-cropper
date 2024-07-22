@@ -9,7 +9,9 @@
 *voc-imagecropper* is a simple utility to crop from PNG or JPEG images bounding box annotations in PASCAL VOC formatted annotations.
 This is used to crop (and optionally resize) images from full frames for classification testing.
     
-![ Image link ](img/flow.jpg)
+---
+![](https://raw.githubusercontent.com/mbari-org/voc-cropper/main/img/flow.jpg)
+---
 
 ## *Arguments* 
 
