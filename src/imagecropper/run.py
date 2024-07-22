@@ -282,18 +282,10 @@ def dict_to_images(xml_file: str,
             logger.info(f'found {img_path}')
             data['filename'] = img_path
 
-        with open(img_path, 'rb') as fid:
-            encoded_img = fid.read()
-        encoded_img_io = io.BytesIO(encoded_img)
-        rgb_image = Image.open(encoded_img_io)
-        if rgb_image.format != 'PNG' and rgb_image.format != 'JPEG':
-            logger.error('Invalid image format ' + rgb_image.format)
-            raise ValueError('Invalid image format ' + rgb_image.format)
-
-        img = cv2.imread(img_path)
         object_ = data['object']
         # object_ will be a list when multiple <object> entries present, otherwise a dict:
         objs = object_ if type(object_) is list else [object_]
+        img = None
         for i, obj in enumerate(objs):
             name = obj['name']
             if machine_friendly:
@@ -304,7 +296,7 @@ def dict_to_images(xml_file: str,
                 logger.info('skipping {}'.format(name))
                 continue
             if labels and (name not in labels or obj['name'] not in labels):
-                logger.warn('{0} not in {1} so excluding from record'.format(name, labels))
+                logger.debug('{0} not in {1} so excluding from record'.format(name, labels))
                 continue
 
             class_dir = '{}/{}'.format(output_dir, name)
@@ -331,6 +323,18 @@ def dict_to_images(xml_file: str,
             if abs(left - right) < minsize or abs(upper - lower) < minsize:
                 logger.info('Too small to convert width {} height {}'.format(abs(left - right), abs(upper - lower)))
                 continue
+
+            # only open image if needed
+            if img == None:
+                with open(img_path, 'rb') as fid:
+                    encoded_img = fid.read()
+                encoded_img_io = io.BytesIO(encoded_img)
+                rgb_image = Image.open(encoded_img_io)
+                if rgb_image.format != 'PNG' and rgb_image.format != 'JPEG':
+                    logger.error('Invalid image format ' + rgb_image.format)
+                    raise ValueError('Invalid image format ' + rgb_image.format)
+
+                img = cv2.imread(img_path)
 
             # if the resize is a square, then we need to crop the image to a square
             resize_width, resize_height = resize if resize else (0, 0)
