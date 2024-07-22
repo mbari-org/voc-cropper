@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.3.6 (2024-07-22)
+
+### Performance
+
+* perf: only open images if valid annotation found for speed-up ([`d219ab8`](https://github.com/mbari-org/voc-cropper/commit/d219ab8b3240dc72b3054a619cc506efc8ae949a))
+
+### Unknown
+
+* Update README.md
+
+added raw link for better support in docker ([`609a47e`](https://github.com/mbari-org/voc-cropper/commit/609a47e3fbbff317723d8f5d82a26edd89f6e21d))
+
 ## v0.3.5 (2024-06-26)
 
 ### Fix
