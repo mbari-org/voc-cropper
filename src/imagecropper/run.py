@@ -353,7 +353,7 @@ def dict_to_images(xml_file: str,
 
 def main():
     logger = logging.getLogger(LOGGER_NAME)
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
     formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
 
     # default log file date to today
