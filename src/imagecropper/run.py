@@ -325,7 +325,7 @@ def dict_to_images(xml_file: str,
                 continue
 
             # only open image if needed
-            if img == None:
+            if img is  None:
                 with open(img_path, 'rb') as fid:
                     encoded_img = fid.read()
                 encoded_img_io = io.BytesIO(encoded_img)
