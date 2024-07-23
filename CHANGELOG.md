@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.3.7 (2024-07-23)
+
+### Fix
+
+* fix: correct conditional ([`3295453`](https://github.com/mbari-org/voc-cropper/commit/32954532c9f7774f47554ce42af1d382b3b55624))
+
 ## v0.3.6 (2024-07-22)
 
 ### Performance
