@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.4.1 (2024-08-30)
+
+### Fix
+
+* fix: trigger release to update __init__.py ([`4e73e41`](https://github.com/mbari-org/voc-cropper/commit/4e73e4175d948e2f899e9f6a7659c00e13f73d82))
+
 ## v0.4.0 (2024-08-30)
 
 ### Feature
