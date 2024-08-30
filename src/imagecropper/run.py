@@ -23,6 +23,7 @@ import glob
 import os
 import numpy as np
 import logging
+import re
 import sys
 import cv2
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -264,19 +265,24 @@ def dict_to_images(xml_file: str,
     """
 
     logger = logging.getLogger(LOGGER_NAME)
+    # Regular expression pattern to match and extract everything before .xml
+    pattern = r"(.+)(?=\.xml$)"
 
     try:
         with open(xml_file, 'rb') as fid:
             xml_str = fid.read()
         xml_in = xmltodict.parse(xml_str)
         data = xml_in['annotation']
-        root = os.path.basename(xml_file).split('.')[0]
+        match = re.match(pattern, xml_file)
+        if match is None:
+            return
+        root = os.path.basename(match.group(1))
 
         if image_dir:
             data['folder'] = image_dir
-            img_path = file_search(os.path.join(image_dir, root), ('.jpeg', '.jpg', '.JPG', '.JPEG', '.PNG', '.png'))
-            if img_path is None:
-                logging.error(f'Cannot find image associated with {xml_file}')
+            img_path = os.path.join(image_dir, root)
+            if not os.path.exists(img_path): 
+                logging.error(f'Cannot find image associated with {xml_file} in {img_path}')
                 return
 
             logger.info(f'found {img_path}')
