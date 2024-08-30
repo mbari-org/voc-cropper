@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.4.0 (2024-08-30)
+
+### Feature
+
+* feat: handle file formats with any formatting before the .xml including dots, spaces, etc ([`9f90208`](https://github.com/mbari-org/voc-cropper/commit/9f902081629c16e54e07dfd55e5fb8245f3a2a05))
+
 ## v0.3.7 (2024-07-23)
 
 ### Fix
