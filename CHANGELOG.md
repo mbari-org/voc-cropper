@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.4.3 (2024-09-04)
+
+### Fix
+
+* fix: correct continue on directory error ([`52105e3`](https://github.com/mbari-org/voc-cropper/commit/52105e3ba7436c1bce13c7c97555746b566efb03))
+
 ## v0.4.2 (2024-09-04)
 
 ### Documentation
