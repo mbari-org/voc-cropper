@@ -121,7 +121,7 @@ def gen_statistics(data_dir: str, stats_file: str, labels_file: str):
     if not os.path.exists(data_dir):
         os.mkdir(data_dir)
 
-    sum_concepts = {}
+    sum_labels = {}
     means = []
     stds = []
     mean = np.array([])
@@ -138,29 +138,29 @@ def gen_statistics(data_dir: str, stats_file: str, labels_file: str):
         means.append(mean)
         stds.append(std)
 
-        if c not in sum_concepts.keys():
-            sum_concepts[c] = 1
+        if c not in sum_labels.keys():
+            sum_labels[c] = 1
         else:
-            sum_concepts[c] += 1
+            sum_labels[c] += 1
 
     if len(means) > 0:
         mean = np.mean(means, axis=(0)) / 255.
         std = np.std(stds, axis=(0)) / 255.
 
     logger.info(f'Writing {stats_file}')
-    json.dump({'total_concepts': sum_concepts, 'mean': mean.tolist(), 'std': std.tolist()},
+    json.dump({'total_labels': sum_labels, 'mean': mean.tolist(), 'std': std.tolist()},
               codecs.open(stats_file, 'w', encoding='utf-8'), separators=(',', ':'), sort_keys=True, indent=4)
 
     # Print out the statistics
-    logger.info(f'Number of concepts: {len(sum_concepts)}')
-    logger.info(f'Number of frames: {sum(sum_concepts.values())}')
+    logger.info(f'Number of labels: {len(sum_labels)}')
+    logger.info(f'Number of frames: {sum(sum_labels.values())}')
     logger.info(f'Mean: {mean}')
     logger.info(f'Std: {std}')
 
     # Stores all unique labels to the labels_file, one per line
     logger.info(f'Writing {labels_file}')
     with open(labels_file, 'w') as f:
-        for key in sum_concepts.keys():
+        for key in sum_labels.keys():
             f.write("%s\n" % key)
 
 
@@ -307,8 +307,12 @@ def dict_to_images(xml_file: str,
 
             class_dir = '{}/{}'.format(output_dir, name)
             if not os.path.exists(class_dir):
-                logger.info('Creating directory {}'.format(class_dir))
-                os.mkdir(class_dir)
+                try:
+                    logger.info('Creating directory {}'.format(class_dir))
+                    os.mkdir(class_dir)
+                except Exception as e:
+                    logger.error('Cannot create directory {} {}. Trying to continue'.format(class_dir,e))
+                    continue
 
             xmin = int(float(obj['bndbox']['xmin']))
             ymin = int(float(obj['bndbox']['ymin']))
@@ -361,9 +365,6 @@ def main():
     logger = logging.getLogger(LOGGER_NAME)
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
-
-    # default log file date to today
-    now = dt.utcnow()
 
     # log to file
     # Log to the /tmp directory if we don't have write access to the current directory
@@ -420,7 +421,7 @@ def main():
         pool.starmap(dict_to_images, args)
 
     logger.info(f'Calculating mean and std ...')
-    stats_file = os.path.join(output_dir, 'stats.txt')
+    stats_file = os.path.join(output_dir, 'stats.json')
     labels_file = os.path.join(output_dir, 'labels.txt')
     gen_statistics(output_dir, stats_file, labels_file)
 
