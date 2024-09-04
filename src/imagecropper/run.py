@@ -312,7 +312,6 @@ def dict_to_images(xml_file: str,
                     os.mkdir(class_dir)
                 except Exception as e:
                     logger.error('Cannot create directory {} {}. Trying to continue'.format(class_dir,e))
-                    continue
 
             xmin = int(float(obj['bndbox']['xmin']))
             ymin = int(float(obj['bndbox']['ymin']))
