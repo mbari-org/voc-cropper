@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v0.4.2 (2024-09-04)
+
+### Documentation
+
+* docs: updated docs to reflect renaming ([`b0a4584`](https://github.com/mbari-org/voc-cropper/commit/b0a4584fac7036d18da980e45dfadf0fff6c1549))
+
+### Fix
+
+* fix: handle duplicate naming of output directory and rename concept to label which is more appropriate for ML ([`99718cd`](https://github.com/mbari-org/voc-cropper/commit/99718cd3099c667eeb70649095b372e51c776434))
+
 ## v0.4.1 (2024-08-30)
 
 ### Fix
