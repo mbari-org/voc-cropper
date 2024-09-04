@@ -59,7 +59,7 @@ Should see output similar to:
 2023-07-17 22:06:10,341 INFO Computing statistics for data
 Computing statistics for data : 100% (1 of 1) || Elapsed Time: 0:00:00 Time:  0:00:00
 2023-07-17 22:06:10,491 INFO Writing data/stats.json
-2023-07-17 22:06:10,492 INFO Number of concepts: 1
+2023-07-17 22:06:10,492 INFO Number of labels: 1
 2023-07-17 22:06:10,492 INFO Number of frames: 1
 2023-07-17 22:06:10,492 INFO Mean: [0.33466873 0.40399225 0.39004853]
 2023-07-17 22:06:10,492 INFO Std: [0. 0. 0.]
