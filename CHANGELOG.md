@@ -1,10 +1,19 @@
 # CHANGELOG
 
+
+## v0.4.4 (2024-10-17)
+
+### Performance Improvements
+
+* perf: test multiple image paths ([`815c3ba`](https://github.com/mbari-org/voc-cropper/commit/815c3ba1f4db26562f8743110c534f96d7dd3bfa))
+
+
 ## v0.4.3 (2024-09-04)
 
-### Fix
+### Fixes
 
 * fix: correct continue on directory error ([`52105e3`](https://github.com/mbari-org/voc-cropper/commit/52105e3ba7436c1bce13c7c97555746b566efb03))
+
 
 ## v0.4.2 (2024-09-04)
 
@@ -12,31 +21,35 @@
 
 * docs: updated docs to reflect renaming ([`b0a4584`](https://github.com/mbari-org/voc-cropper/commit/b0a4584fac7036d18da980e45dfadf0fff6c1549))
 
-### Fix
+### Fixes
 
 * fix: handle duplicate naming of output directory and rename concept to label which is more appropriate for ML ([`99718cd`](https://github.com/mbari-org/voc-cropper/commit/99718cd3099c667eeb70649095b372e51c776434))
 
+
 ## v0.4.1 (2024-08-30)
 
-### Fix
+### Fixes
 
 * fix: trigger release to update __init__.py ([`4e73e41`](https://github.com/mbari-org/voc-cropper/commit/4e73e4175d948e2f899e9f6a7659c00e13f73d82))
 
+
 ## v0.4.0 (2024-08-30)
 
-### Feature
+### Features
 
 * feat: handle file formats with any formatting before the .xml including dots, spaces, etc ([`9f90208`](https://github.com/mbari-org/voc-cropper/commit/9f902081629c16e54e07dfd55e5fb8245f3a2a05))
 
+
 ## v0.3.7 (2024-07-23)
 
-### Fix
+### Fixes
 
 * fix: correct conditional ([`3295453`](https://github.com/mbari-org/voc-cropper/commit/32954532c9f7774f47554ce42af1d382b3b55624))
 
+
 ## v0.3.6 (2024-07-22)
 
-### Performance
+### Performance Improvements
 
 * perf: only open images if valid annotation found for speed-up ([`d219ab8`](https://github.com/mbari-org/voc-cropper/commit/d219ab8b3240dc72b3054a619cc506efc8ae949a))
 
@@ -46,61 +59,70 @@
 
 added raw link for better support in docker ([`609a47e`](https://github.com/mbari-org/voc-cropper/commit/609a47e3fbbff317723d8f5d82a26edd89f6e21d))
 
+
 ## v0.3.5 (2024-06-26)
 
-### Fix
+### Fixes
 
 * fix: added version extract from tag ([`097b7db`](https://github.com/mbari-org/voc-cropper/commit/097b7db2c4662f1fc9b9f2cd7ffda76356b3525c))
 
+
 ## v0.3.4 (2024-06-26)
 
-### Fix
+### Fixes
 
 * fix: added prerelease ([`27d1dcb`](https://github.com/mbari-org/voc-cropper/commit/27d1dcb640f3a0a60469c75e2145797558a8f68e))
 
+
 ## v0.3.3 (2024-06-26)
 
-### Fix
+### Fixes
 
 * fix: correct release boolean? ([`4318d9e`](https://github.com/mbari-org/voc-cropper/commit/4318d9e0795332b30f26a3e140783dd50416908a))
 
+
 ## v0.3.2 (2024-06-26)
 
-### Fix
+### Fixes
 
 * fix: correct release boolean ([`400b5e1`](https://github.com/mbari-org/voc-cropper/commit/400b5e152bd321fb2b80d9ecd56245bff389466a))
 
+
 ## v0.3.1 (2024-06-26)
 
-### Fix
+### Fixes
 
 * fix: do not override the dst_file for resize and revert release change which fails ([`1ffe03f`](https://github.com/mbari-org/voc-cropper/commit/1ffe03f5c71565d41621fb53cb16ac9c15061942))
 
+
 ## v0.3.0 (2024-06-25)
 
-### Feature
+### Features
 
 * feat: switch to id to be more generic ([`24bd8de`](https://github.com/mbari-org/voc-cropper/commit/24bd8dec4c100ed7ec2acc74f4b9155c9073a5fa))
 
+
 ## v0.2.0 (2024-06-25)
 
-### Feature
+### Features
 
 * feat: add support for uuid in xml and add machine friendly names as an option ([`295f17b`](https://github.com/mbari-org/voc-cropper/commit/295f17beb70d7b0d4ff480fb647b7cefad9c2a61))
 
+
 ## v0.1.1 (2024-06-25)
 
-### Build
+### Build System
 
 * build: add sys path ([`13461fa`](https://github.com/mbari-org/voc-cropper/commit/13461fa6d789538f7d16471da9c68640f0a123f9))
 
-### Fix
+### Fixes
 
 * fix: correct source structure ([`9cbc2e2`](https://github.com/mbari-org/voc-cropper/commit/9cbc2e23d70e3d0c218dd8ac51fd0676df133e52))
 
+
 ## v0.1.0 (2024-06-25)
 
-### Build
+### Build System
 
 * build: added version to command ([`682c6ba`](https://github.com/mbari-org/voc-cropper/commit/682c6ba7828bc91be3968f088c882e8d78a158fc))
 
@@ -134,7 +156,7 @@ updated flow image and associated doc to reflect new repo/docker image name ([`0
 
 * docs: reformatted image to remove black space ([`4600764`](https://github.com/mbari-org/voc-cropper/commit/46007640dc4298d3c3a8b81ba044cfa65878a92f))
 
-### Feature
+### Features
 
 * feat: added better square cropping algorithm ([`ef42a69`](https://github.com/mbari-org/voc-cropper/commit/ef42a699c73631bbc0f412963d828662063c4106))
 
@@ -144,7 +166,7 @@ updated flow image and associated doc to reflect new repo/docker image name ([`0
 
 * feat: initial check-in ([`ea22ee2`](https://github.com/mbari-org/voc-cropper/commit/ea22ee28837b28d040509020127c8e217035d910))
 
-### Fix
+### Fixes
 
 * fix: write log to writable dir and add progressbar2 ([`6349145`](https://github.com/mbari-org/voc-cropper/commit/63491459c20046bcf4551dcc6307f1c9d945f726))
 
@@ -156,7 +178,7 @@ updated flow image and associated doc to reflect new repo/docker image name ([`0
 
 * fix: updated tensorflow build ([`4a9c718`](https://github.com/mbari-org/voc-cropper/commit/4a9c7180e063d6975c33a2a3b082b18cd83e4ba1))
 
-### Performance
+### Performance Improvements
 
 * perf: remove unneeded scipy dependency ([`f97ad33`](https://github.com/mbari-org/voc-cropper/commit/f97ad3377281cfa1d284168654cd0bf99f7e7d13))
 
