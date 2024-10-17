@@ -280,9 +280,16 @@ def dict_to_images(xml_file: str,
 
         if image_dir:
             data['folder'] = image_dir
-            img_path = os.path.join(image_dir, root)
-            if not os.path.exists(img_path): 
-                logging.error(f'Cannot find image associated with {xml_file} in {img_path}')
+            img_path_guess1 = data['path']
+            img_path_guess2 = os.path.join(image_dir, root)
+            img_path = None
+            if os.path.exists(img_path_guess1):
+                img_path = img_path_guess1
+            elif os.path.exists(img_path_guess2):
+                img_path = img_path_guess1
+
+            if img_path is None:
+                logging.error(f'Cannot find image associated with {xml_file} in {img_path_guess2} or {img_path_guess1}')
                 return
 
             logger.info(f'found {img_path}')
