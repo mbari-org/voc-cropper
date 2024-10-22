@@ -301,6 +301,10 @@ def dict_to_images(xml_file: str,
         img = None
         for i, obj in enumerate(objs):
             name = obj['name']
+            # If the name is None, skip this object
+            if name is None:
+                logger.error('Name is missing in {0} skipping'.format(xml_file))
+                continue
             if machine_friendly:
                 # Convert a machine friendly name, replacing sp. and white spaces with underscores
                 name = name.replace(' ', '_')
